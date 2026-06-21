@@ -1,5 +1,4 @@
 from pptx import Presentation
-from pptx.util import Pt
 
 OUTPUT = "淮塔（淮海战役烈士纪念塔）课堂汇报.pptx"
 
@@ -46,7 +45,7 @@ slides = [
         "它记录历史、凝聚记忆、传承信念",
         "我们应铭记先烈、珍惜和平、勇担责任",
     ]),
-    ("结束", ["感谢聆听", "欢迎交流" ]),
+    ("结束", ["感谢聆听", "欢迎交流"]),
 ]
 
 prs = Presentation()
@@ -65,16 +64,6 @@ for title, bullets in slides[1:]:
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.text = bullet
         p.level = 0
-        for run in p.runs:
-            run.font.size = Pt(24)
-
-for slide in prs.slides:
-    for shape in slide.shapes:
-        if not shape.has_text_frame:
-            continue
-        for paragraph in shape.text_frame.paragraphs:
-            for run in paragraph.runs:
-                run.font.name = "微软雅黑"
 
 prs.save(OUTPUT)
 print(f"Generated: {OUTPUT}")
